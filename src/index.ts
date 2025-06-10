@@ -46,6 +46,10 @@ export { default as Flex } from 'antd/es/flex/index.js';
 export { CustomButton } from './components/CustomButton';
 export type { CustomButtonProps } from './components/CustomButton';
 
+// Export Navbar component
+export { Navbar } from './components/Navbar';
+export type { NavbarProps, NavbarItem } from './components/Navbar';
+
 // Export custom theme utilities
 export * from './theme';
 

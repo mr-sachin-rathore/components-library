@@ -1,0 +1,418 @@
+.navbar-wrapper {
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-container {
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1) !important;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow: visible !important;
+    will-change: width;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+    .navbar-content {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+    }
+
+    .navbar-logo {
+        padding: 16px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-bottom: 1px solid #303030;
+        min-height: 64px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        white-space: nowrap;
+        flex-shrink: 0;
+        width: 100%;
+
+        // Override any internal logo component styling
+        >* {
+            margin: 0 auto !important;
+        }
+
+        // When collapsed, ensure single icon is centered
+        .ant-layout-sider-collapsed & {
+            padding: 16px 12px;
+
+            >* {
+                margin: 0 auto !important;
+                justify-content: center !important;
+            }
+        }
+
+        .ant-layout-sider-light & {
+            border-bottom-color: #f0f0f0;
+        }
+
+        // Logo component styles - Fixed centering and inline layout
+        .navbar-logo-content {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white;
+            width: 100%;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .navbar-logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #1890ff, #52c41a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo-title {
+            color: white !important;
+            font-weight: bold !important;
+            font-size: 16px !important;
+            line-height: 1 !important;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo-icon-collapsed {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: linear-gradient(45deg, #1890ff, #52c41a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin: 0 auto;
+        }
+
+        // Transition states for smooth expand/collapse
+        .navbar-logo-content,
+        .navbar-logo-icon-collapsed {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        // Collapsed state - hide full logo, show icon only
+        .ant-layout-sider-collapsed & {
+            .navbar-logo-content {
+                opacity: 0;
+                transform: scale(0.8);
+                pointer-events: none;
+                position: absolute;
+            }
+
+            .navbar-logo-icon-collapsed {
+                opacity: 1;
+                transform: scale(1);
+                position: relative;
+            }
+        }
+
+        // Expanded state - show full logo, hide collapsed icon
+        &:not(.ant-layout-sider-collapsed) {
+            .navbar-logo-content {
+                opacity: 1;
+                transform: scale(1);
+                position: relative;
+            }
+
+            .navbar-logo-icon-collapsed {
+                opacity: 0;
+                transform: scale(0.8);
+                pointer-events: none;
+                position: absolute;
+            }
+        }
+    }
+
+    .navbar-menu-section {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+
+        &.navbar-top-menu {
+            margin-bottom: 0;
+        }
+
+        &.navbar-bottom-menu {
+            margin-top: 0;
+        }
+
+        .navbar-menu {
+            border: none !important;
+            background: transparent !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+
+            .ant-menu-item {
+                margin: 4px 8px;
+                border-radius: 6px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow: hidden;
+                position: relative;
+                height: auto;
+                line-height: normal;
+                padding: 8px 12px;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    transform: translateX(2px);
+                }
+
+                &.ant-menu-item-selected {
+                    background-color: var(--color-primary, #1890ff);
+                }
+
+                // Smooth icon and label transitions
+                .navbar-icon {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 16px;
+                    min-width: 16px;
+                    width: 16px;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    flex-shrink: 0;
+                }
+
+                .navbar-label {
+                    margin-left: 12px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    white-space: nowrap;
+                    opacity: 1;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    transform: translateX(0);
+                    overflow: hidden;
+                    flex: 1;
+                }
+
+                .navbar-component-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 8px;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                    .navbar-label {
+                        margin-left: 0;
+                        margin-bottom: 4px;
+                    }
+                }
+            }
+
+            // When collapsed, hide labels smoothly
+            &.ant-menu-inline-collapsed {
+                .ant-menu-item {
+                    padding: 8px 12px;
+                    text-align: center;
+
+                    .navbar-label,
+                    .navbar-component-wrapper {
+                        opacity: 0;
+                        transform: translateX(-20px);
+                        width: 0;
+                        margin-left: 0;
+                        overflow: hidden;
+                    }
+
+                    .navbar-icon {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .navbar-spacer {
+        flex: 1 1 auto;
+        min-height: 60px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+    }
+
+    .navbar-toggle {
+        flex-shrink: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        .navbar-toggle-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            .ant-layout-sider-light & {
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
+    }
+
+    // Enhanced Dark Theme Separation
+    &.ant-layout-sider-dark {
+        border-right: 2px solid rgba(139, 146, 255, 0.2);
+        box-shadow:
+            4px 0 16px rgba(0, 0, 0, 0.3),
+            2px 0 8px rgba(139, 146, 255, 0.1) !important;
+
+        // Add an inner glow effect
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -1px;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    rgba(139, 146, 255, 0.3) 0%,
+                    rgba(167, 139, 250, 0.2) 50%,
+                    rgba(139, 146, 255, 0.3) 100%);
+            z-index: 1001;
+        }
+    }
+
+    // Locked state styling
+    &.navbar-locked {
+        .navbar-menu {
+            .ant-menu-item {
+                &:hover {
+                    transform: none; // Disable hover animations when locked
+                }
+            }
+        }
+
+        // Add visual indicator for locked state
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #faad14, #ff7875);
+            z-index: 1001;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+
+    // Light theme adjustments
+    &.ant-layout-sider-light {
+        background: #fff;
+        border-right: 1px solid #f0f0f0;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1) !important;
+
+        .navbar-logo {
+            border-bottom-color: #f0f0f0;
+        }
+
+        .navbar-menu {
+            .ant-menu-item {
+                color: rgba(0, 0, 0, 0.85);
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+            }
+        }
+
+        // Light theme locked indicator
+        &.navbar-locked::before {
+            background: linear-gradient(to bottom, #1890ff, #52c41a);
+        }
+    }
+
+    // Enhanced width transition - remove the ant-layout-sider-collapsed override
+    // Let Ant Design handle the width naturally
+    .ant-layout-sider-children {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, opacity;
+    }
+
+    // Custom lock item styling
+    .navbar-lock-item {
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        margin: 4px 8px 8px 8px !important;
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .navbar-icon {
+            color: #faad14 !important;
+        }
+
+        .ant-layout-sider-light & {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+
+            &:hover {
+                border-color: rgba(0, 0, 0, 0.2) !important;
+                background-color: rgba(0, 0, 0, 0.02) !important;
+            }
+        }
+    }
+}
+
+// Global styles for content adjustment
+.with-navbar {
+    margin-left: 60px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.navbar-expanded {
+        margin-left: 240px;
+    }
+}
+
+// Enhanced responsive behavior
+@media (max-width: 768px) {
+    .navbar-container {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.mobile-visible {
+            transform: translateX(0);
+        }
+
+        // Hide lock indicator on mobile
+        &.navbar-locked::before {
+            display: none;
+        }
+    }
+
+    .with-navbar {
+        margin-left: 0 !important;
+    }
+}
+
+// Tooltip enhancement for better UX
+.ant-tooltip {
+    z-index: 1060 !important;
+
+    .ant-tooltip-inner {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+// Prevent text selection during transitions
+.navbar-container * {
+    user-select: none;
+}

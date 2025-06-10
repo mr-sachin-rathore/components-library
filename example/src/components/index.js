@@ -1,4 +1,3 @@
-export { default as Header } from './Header/Header';
 export { default as StatsDashboard } from './StatsDashboard/StatsDashboard';
 export { default as QuickAdd } from './QuickAdd/QuickAdd';
 export { default as FilterSection } from './FilterSection/FilterSection';

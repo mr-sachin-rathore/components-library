@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
   margin: 0;
   padding: 0;
@@ -7,6 +8,14 @@ body {
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Dark Theme Body */
+body.theme-dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
 *,
@@ -15,148 +24,852 @@ body {
   box-sizing: inherit;
 }
 
-/* Modern Todo App Styles */
+/* Modern Todo App Layout */
 .App {
   min-height: 100vh;
-}
-
-/* Header theme selector styling */
-.ant-layout-header .ant-select-selector {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: #ffffff !important;
-}
-
-.ant-layout-header .ant-select-selector:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.ant-layout-header .ant-select-selection-item {
-  color: #ffffff !important;
-}
-
-.ant-layout-header .ant-select-arrow {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* Header switch styling */
-.ant-layout-header .ant-switch {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-
-.ant-layout-header .ant-switch-checked {
-  background: #1890ff !important;
-}
-
-/* Custom animations for todo items */
-.todo-item {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   transition: all 0.3s ease;
 }
 
-/* Priority indicator animation */
-.priority-indicator {
-  animation: pulse 2s infinite;
+/* Dark Theme App */
+.theme-dark .App {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
+/* Main Content Area */
+.todo-main-content {
+  width: 100vw;
+  margin-left: 60px;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme Main Content with Enhanced Separation */
+.theme-dark .todo-main-content {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  border-left: 2px solid rgba(139, 146, 255, 0.15);
+  box-shadow: inset 4px 0 8px rgba(0, 0, 0, 0.2);
+
+  /* Add a subtle inner glow on the left edge */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(139, 146, 255, 0.2) 0%,
+      rgba(167, 139, 250, 0.1) 50%,
+      rgba(139, 146, 255, 0.2) 100%
+    );
+    z-index: 1;
   }
-  50% {
-    opacity: 0.7;
-  }
+}
+
+.todo-main-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(54, 207, 201, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark Theme Background Overlay */
+.theme-dark .todo-main-content::before {
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(54, 207, 201, 0.05) 0%, transparent 50%);
+}
+
+.todo-content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+}
+
+/* Page Headers */
+.page-header {
+  margin-bottom: 32px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.page-header .ant-typography-h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Theme Headers */
+.theme-dark .page-header .ant-typography-h2 {
+  background: linear-gradient(135deg, #8b92ff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+/* Dark Theme Header Underline */
+.theme-dark .page-header::after {
+  background: linear-gradient(135deg, #8b92ff 0%, #a78bfa 100%);
+}
+
+/* Cards and Components Enhancement */
+.ant-card {
+  border-radius: 12px !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+/* Dark Theme Cards */
+.theme-dark .ant-card {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ant-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Dark Theme Card Hover */
+.theme-dark .ant-card:hover {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.ant-card .ant-card-body {
+  padding: 24px !important;
+}
+
+/* Statistics Dashboard Enhancements */
+.ant-statistic {
+  text-align: center;
+}
+
+.ant-statistic .ant-statistic-title {
+  font-weight: 600 !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  margin-bottom: 8px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Dark Theme Statistics */
+.theme-dark .ant-statistic .ant-statistic-title {
+  color: #94a3b8 !important;
+}
+
+.ant-statistic .ant-statistic-content {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+
+/* Dark Theme Statistic Content */
+.theme-dark .ant-statistic .ant-statistic-content {
+  color: #f1f5f9 !important;
+}
+
+/* Progress Bar Enhancements */
+.ant-progress-line {
+  margin-top: 12px !important;
+}
+
+.ant-progress-bg {
+  background: linear-gradient(90deg, #52c41a 0%, #73d13d 100%) !important;
+  border-radius: 4px !important;
+}
+
+.ant-progress-inner {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-radius: 4px !important;
+}
+
+/* Dark Theme Progress */
+.theme-dark .ant-progress-inner {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Todo List Enhancements */
+.ant-list {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  overflow: hidden !important;
+}
+
+/* Dark Theme List */
+.theme-dark .ant-list {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ant-list-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 20px 24px !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  border-bottom: none !important;
+}
+
+/* Dark Theme List Header */
+.theme-dark .ant-list-header {
+  background: linear-gradient(135deg, #4c4f69 0%, #5b5f7a 100%) !important;
+}
+
+.ant-list-item {
+  padding: 20px 24px !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+/* Dark Theme List Item */
+.theme-dark .ant-list-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #e2e8f0 !important;
+}
+
+.ant-list-item:hover {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Dark Theme List Item Hover */
+.theme-dark .ant-list-item:hover {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+.ant-list-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Empty State */
+.ant-list-empty-text {
+  padding: 60px 24px !important;
+  text-align: center !important;
+  color: #94a3b8 !important;
+  font-style: italic !important;
+}
+
+/* Dark Theme Empty State */
+.theme-dark .ant-list-empty-text {
+  color: #64748b !important;
+}
+
+/* Form Enhancements */
+.ant-input {
+  border-radius: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Dark Theme Inputs */
+.theme-dark .ant-input {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+.ant-input:focus,
+.ant-input:hover {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Dark Theme Input Focus */
+.theme-dark .ant-input:focus,
+.theme-dark .ant-input:hover {
+  border-color: #8b92ff !important;
+  box-shadow: 0 0 0 2px rgba(139, 146, 255, 0.2) !important;
+}
+
+/* Button Enhancements */
+.ant-btn {
+  border-radius: 8px !important;
+  height: auto !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+}
+
+/* Dark Theme Primary Button */
+.theme-dark .ant-btn-primary {
+  background: linear-gradient(135deg, #8b92ff 0%, #a78bfa 100%) !important;
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6b46c1 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Dark Theme Button Hover */
+.theme-dark .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+}
+
+/* Select Enhancements */
+.ant-select .ant-select-selector {
+  border-radius: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  padding: 8px 12px !important;
+}
+
+/* Dark Theme Select */
+.theme-dark .ant-select .ant-select-selector {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Dark Theme Select Focus */
+.theme-dark .ant-select-focused .ant-select-selector {
+  border-color: #8b92ff !important;
+  box-shadow: 0 0 0 2px rgba(139, 146, 255, 0.2) !important;
+}
+
+/* Component Sections */
+.quick-add-section {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.quick-add-section .ant-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.95) 100%
+  ) !important;
+}
+
+/* Dark Theme Quick Add */
+.theme-dark .quick-add-section .ant-card {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.95) 0%,
+    rgba(15, 15, 35, 0.95) 100%
+  ) !important;
+}
+
+.filter-section {
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.filter-section .ant-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(248, 250, 252, 0.95) 100%
+  ) !important;
+}
+
+/* Dark Theme Filter Section */
+.theme-dark .filter-section .ant-card {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.95) 0%,
+    rgba(15, 15, 35, 0.95) 100%
+  ) !important;
+}
+
+/* Footer */
+.todo-footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Dark Theme Footer */
+.theme-dark .todo-footer {
+  background: rgba(15, 15, 35, 0.8) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.theme-dark .todo-footer .ant-typography {
+  color: #94a3b8 !important;
+}
+
+/* Modal Enhancements */
+.ant-modal-mask {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* Dark Theme Modal Mask */
+.theme-dark .ant-modal-mask {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.ant-modal .ant-modal-content {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* Dark Theme Modal Content */
+.theme-dark .ant-modal .ant-modal-content {
+  background: rgba(26, 26, 46, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.ant-modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-bottom: none !important;
+  padding: 24px !important;
+}
+
+/* Dark Theme Modal Header */
+.theme-dark .ant-modal-header {
+  background: linear-gradient(135deg, #4c4f69 0%, #5b5f7a 100%) !important;
+}
+
+.ant-modal-title {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+}
+
+.ant-modal-close {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.ant-modal-close:hover {
+  color: white !important;
+}
+
+.ant-modal-body {
+  padding: 32px 24px !important;
+}
+
+/* Dark Theme Modal Body */
+.theme-dark .ant-modal-body {
+  color: #e2e8f0 !important;
+}
+
+/* Priority Styles */
+.priority-high {
+  color: #ef4444 !important;
+  font-weight: 600 !important;
+}
+
+.priority-medium {
+  color: #f59e0b !important;
+  font-weight: 600 !important;
+}
+
+.priority-low {
+  color: #10b981 !important;
+  font-weight: 600 !important;
+}
+
+/* Dark Theme Priorities */
+.theme-dark .priority-high {
+  color: #fca5a5 !important;
+}
+
+.theme-dark .priority-medium {
+  color: #fcd34d !important;
+}
+
+.theme-dark .priority-low {
+  color: #6ee7b7 !important;
+}
+
+.priority-indicator {
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
   100% {
     opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-/* Modal styling fixes for all themes */
-.ant-modal-mask {
-  background: rgba(0, 0, 0, 0.65) !important;
-  backdrop-filter: blur(2px);
+/* Additional Dark Theme Text Colors */
+.theme-dark .ant-typography {
+  color: #e2e8f0 !important;
 }
 
-.ant-modal-wrap {
-  backdrop-filter: blur(2px);
+.theme-dark .ant-typography-caption {
+  color: #94a3b8 !important;
 }
 
-/* Light theme modal */
-.theme-light .ant-modal-content {
-  background: #ffffff !important;
-  box-shadow:
-    0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
-    0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+/* Dark Theme Tags */
+.theme-dark .ant-tag {
+  background: rgba(30, 41, 59, 0.8) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-.theme-light .ant-modal-header {
-  background: #ffffff !important;
-  border-bottom: 1px solid #f0f0f0 !important;
+/* Dark Theme Switch */
+.theme-dark .ant-switch {
+  background: rgba(30, 41, 59, 0.8) !important;
 }
 
-/* Dark theme modal */
-.theme-dark .ant-modal-content {
-  background: #1f1f1f !important;
-  box-shadow:
-    0 6px 16px 0 rgba(0, 0, 0, 0.4),
-    0 3px 6px -4px rgba(0, 0, 0, 0.5),
-    0 9px 28px 8px rgba(0, 0, 0, 0.3) !important;
+.theme-dark .ant-switch-checked {
+  background: #8b92ff !important;
 }
 
-.theme-dark .ant-modal-header {
-  background: #1f1f1f !important;
-  border-bottom: 1px solid #434343 !important;
+/* Dark Theme Dropdown */
+.theme-dark .ant-select-dropdown {
+  background: rgba(26, 26, 46, 0.98) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
 }
 
-.theme-dark .ant-modal-mask {
-  background: rgba(0, 0, 0, 0.85) !important;
+.theme-dark .ant-select-item {
+  color: #e2e8f0 !important;
 }
 
-/* Custom scrollbar for todo list */
+.theme-dark .ant-select-item:hover {
+  background: rgba(139, 146, 255, 0.1) !important;
+}
+
+.theme-dark .ant-select-item-option-selected {
+  background: rgba(139, 146, 255, 0.2) !important;
+}
+
+/* Scrollbar Styling */
 .ant-list-items {
-  max-height: 60vh;
+  max-height: 70vh;
   overflow-y: auto;
 }
 
 .ant-list-items::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .ant-list-items::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.06);
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
 }
 
 .ant-list-items::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
 }
 
 .ant-list-items::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #5a6fd8 0%, #6b4190 100%);
 }
 
-/* Dark theme scrollbar */
-.theme-dark .ant-list-items::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.06);
+/* Tags Enhancement */
+.ant-tag {
+  border-radius: 12px !important;
+  padding: 4px 12px !important;
+  font-weight: 500 !important;
+  border: none !important;
 }
 
-.theme-dark .ant-list-items::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .todo-content-wrapper {
+    padding: 24px;
+    width: 100%;
+  }
 }
 
-.theme-dark .ant-list-items::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* Responsive design improvements */
 @media (max-width: 768px) {
-  .ant-layout-header {
-    padding: 0 16px;
+  .todo-main-content {
+    margin-left: 0 !important;
   }
 
-  .ant-layout-content {
+  .todo-content-wrapper {
     padding: 16px;
+    width: 100%;
   }
+
+  .page-header .ant-typography-h2 {
+    font-size: 2rem;
+  }
+
+  .ant-card .ant-card-body {
+    padding: 16px !important;
+  }
+
+  .ant-list-item {
+    padding: 16px !important;
+  }
+
+  .quick-add-section {
+    padding: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header .ant-typography-h2 {
+    font-size: 1.75rem;
+  }
+
+  .todo-content-wrapper {
+    padding: 12px;
+    width: 100%;
+  }
+
+  .ant-statistic .ant-statistic-content {
+    font-size: 24px !important;
+  }
+}
+
+/* Loading and Empty States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* View All Link Enhancement */
+.view-all-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+
+.view-all-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  color: white !important;
+}
+
+/* Success Animations */
+@keyframes success {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.success-animation {
+  animation: success 0.6s ease;
+}
+
+/* Statistics Dashboard Full Width */
+.stats-dashboard-full-width {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.stats-dashboard-full-width .ant-row {
+  width: 100%;
+}
+
+/* Todo List Full Width */
+.todo-list-full-width {
+  width: 100%;
+}
+
+.todo-list-full-width .ant-list {
+  width: 100%;
+}
+
+/* Profile and Settings Page Cards */
+.profile-page-card,
+.settings-page-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 12px !important;
+  padding: 32px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  width: 100% !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Dark Theme Profile and Settings Cards */
+.theme-dark .profile-page-card,
+.theme-dark .settings-page-card {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Profile Avatar */
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #1890ff, #52c41a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 16px;
+  transition: all 0.3s ease;
+}
+
+/* Dark Theme Profile Avatar */
+.theme-dark .profile-avatar {
+  background: linear-gradient(45deg, #8b92ff, #6ee7b7);
+  box-shadow: 0 4px 20px rgba(139, 146, 255, 0.3);
+}
+
+/* Profile Stats Card */
+.profile-stats-card {
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Dark Theme Profile Stats Card */
+.theme-dark .profile-stats-card {
+  background: rgba(139, 146, 255, 0.1);
+  border: 1px solid rgba(139, 146, 255, 0.2);
+}
+
+/* Profile Quote */
+.profile-quote {
+  font-size: 14px !important;
+  color: #64748b !important;
+  font-style: italic !important;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Dark Theme Profile Quote */
+.theme-dark .profile-quote {
+  color: #94a3b8 !important;
+}
+
+/* Settings Info Card */
+.settings-info-card {
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Dark Theme Settings Info Card */
+.theme-dark .settings-info-card {
+  background: rgba(139, 146, 255, 0.1);
+  border: 1px solid rgba(139, 146, 255, 0.2);
+}
+
+.theme-dark .settings-info-card .ant-typography {
+  color: #94a3b8 !important;
+}
+
+/* Profile and Settings Page Text */
+.theme-dark .profile-page-card .ant-typography,
+.theme-dark .settings-page-card .ant-typography {
+  color: #e2e8f0 !important;
+}
+
+.theme-dark .profile-page-card .ant-typography[type='secondary'],
+.theme-dark .settings-page-card .ant-typography[type='secondary'] {
+  color: #94a3b8 !important;
+}
+
+/* Profile Page Stat Numbers - ensure they keep their colors */
+.theme-dark .profile-stats-card .ant-col div[style*='color: #1890ff'] {
+  color: #60a5fa !important;
+}
+
+.theme-dark .profile-stats-card .ant-col div[style*='color: #52c41a'] {
+  color: #6ee7b7 !important;
+}
+
+.theme-dark .profile-stats-card .ant-col div[style*='color: #faad14'] {
+  color: #fcd34d !important;
 }

@@ -38,9 +38,9 @@
     "url": "your-repo-url"
   },
   "peerDependencies": {
+    "antd": ">=5.0.0",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "antd": ">=5.0.0"
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
@@ -63,8 +63,8 @@
     "@types/jest": "^29.5.5",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.11",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
     "antd": "^5.10.0",
     "autoprefixer": "^10.4.16",
     "babel-loader": "^9.1.3",

@@ -47,7 +47,15 @@ export default [
         extract: true,
         minimize: true,
         sourceMap: true,
-        use: ['sass'],
+        use: [
+          [
+            'sass',
+            {
+              api: 'modern',
+              silenceDeprecations: ['legacy-js-api'],
+            },
+          ],
+        ],
       }),
     ],
     external: ['react', 'react-dom', 'antd'],

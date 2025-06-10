@@ -1,0 +1,327 @@
+/* ==========================================================================
+   CSS Custom Properties (Variables) for Theming
+   ========================================================================== */
+
+:root {
+  /* =================
+     Primary Colors
+     ================= */
+  --color-primary: #1890ff;
+  --color-primary-light: #40a9ff;
+  --color-primary-dark: #096dd9;
+  --color-primary-lightest: #e6f7ff;
+  --color-primary-darkest: #002766;
+
+  /* =================
+     Status Colors
+     ================= */
+  --color-success: #52c41a;
+  --color-success-light: #73d13d;
+  --color-success-dark: #389e0d;
+  --color-success-lightest: #f6ffed;
+  --color-success-darkest: #135200;
+
+  --color-warning: #faad14;
+  --color-warning-light: #ffc53d;
+  --color-warning-dark: #d48806;
+  --color-warning-lightest: #fffbe6;
+  --color-warning-darkest: #613400;
+
+  --color-error: #ff4d4f;
+  --color-error-light: #ff7875;
+  --color-error-dark: #cf1322;
+  --color-error-lightest: #fff2f0;
+  --color-error-darkest: #5c0011;
+
+  --color-info: #13c2c2;
+  --color-info-light: #36cfc9;
+  --color-info-dark: #08979c;
+  --color-info-lightest: #e6fffb;
+  --color-info-darkest: #002329;
+
+  /* =================
+     Neutral Colors
+     ================= */
+  --color-white: #ffffff;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #f0f0f0;
+  --color-gray-300: #d9d9d9;
+  --color-gray-400: #bfbfbf;
+  --color-gray-500: #8c8c8c;
+  --color-gray-600: #595959;
+  --color-gray-700: #434343;
+  --color-gray-800: #262626;
+  --color-gray-900: #1f1f1f;
+  --color-black: #000000;
+
+  /* Text Colors */
+  --color-text-primary: rgba(0, 0, 0, 0.88);
+  --color-text-secondary: rgba(0, 0, 0, 0.65);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+  --color-text-quaternary: rgba(0, 0, 0, 0.25);
+  --color-text-disabled: rgba(0, 0, 0, 0.25);
+  --color-text-inverse: #ffffff;
+
+  /* Background Colors */
+  --color-bg-container: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-layout: #f5f5f5;
+  --color-bg-spotlight: #ffffff;
+  --color-bg-mask: rgba(0, 0, 0, 0.45);
+
+  /* Border Colors */
+  --color-border: #d9d9d9;
+  --color-border-secondary: #f0f0f0;
+
+  /* =================
+     Typography
+     ================= */
+  --font-family-primary:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-code: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 38px;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-xs: 1.2;
+  --line-height-sm: 1.4;
+  --line-height-base: 1.5714285714285714;
+  --line-height-lg: 1.6;
+  --line-height-xl: 1.8;
+
+  /* =================
+     Spacing
+     ================= */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
+
+  /* Component Spacing */
+  --control-padding-horizontal: 12px;
+  --control-padding-horizontal-sm: 8px;
+  --control-height: 32px;
+  --control-height-sm: 24px;
+  --control-height-lg: 40px;
+
+  /* =================
+     Border Radius
+     ================= */
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-base: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+  --border-radius-round: 50%;
+
+  /* =================
+     Shadows
+     ================= */
+  --box-shadow-xs:
+    0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --box-shadow-sm:
+    0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --box-shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --box-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Component Shadows */
+  --box-shadow-card:
+    0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+    0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  --box-shadow-drawer:
+    0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12);
+  --box-shadow-modal:
+    0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0 9px 46px 8px rgba(0, 0, 0, 0.12);
+
+  /* =================
+     Z-Index
+     ================= */
+  --z-index-base: 0;
+  --z-index-affix: 10;
+  --z-index-back-top: 10;
+  --z-index-picker-panel: 10;
+  --z-index-popup-close: 10;
+  --z-index-modal: 1000;
+  --z-index-drawer: 1000;
+  --z-index-popover: 1030;
+  --z-index-dropdown: 1050;
+  --z-index-tooltip: 1060;
+  --z-index-notification: 1010;
+  --z-index-message: 1010;
+  --z-index-tour: 1001;
+
+  /* =================
+     Animation
+     ================= */
+  --motion-duration-fast: 0.1s;
+  --motion-duration-mid: 0.2s;
+  --motion-duration-slow: 0.3s;
+
+  /* Easing */
+  --motion-ease-linear: cubic-bezier(0, 0, 1, 1);
+  --motion-ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --motion-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --motion-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --motion-ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+  --motion-ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+  --motion-ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+  --motion-ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+  --motion-ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  --motion-ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+
+  /* =================
+     Breakpoints
+     ================= */
+  --screen-xs: 480px;
+  --screen-sm: 576px;
+  --screen-md: 768px;
+  --screen-lg: 992px;
+  --screen-xl: 1200px;
+  --screen-xxl: 1600px;
+
+  /* Container Max Widths */
+  --container-xs: 100%;
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-xxl: 1320px;
+
+  /* =================
+     Component Variables
+     ================= */
+
+  /* Button */
+  --btn-font-weight: 400;
+  --btn-border-width: 1px;
+  --btn-border-style: solid;
+  --btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+  --btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  --btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+
+  /* Input */
+  --input-border-color: var(--color-border);
+  --input-border-hover-color: var(--color-primary);
+  --input-border-focus-color: var(--color-primary);
+  --input-placeholder-color: var(--color-text-quaternary);
+  --input-hover-border-color: var(--color-primary-light);
+  --input-focus-border-color: var(--color-primary);
+  --input-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+
+  /* Table */
+  --table-header-bg: var(--color-bg-container);
+  --table-header-color: var(--color-text-primary);
+  --table-header-sort-bg: var(--color-gray-100);
+  --table-body-sort-bg: var(--color-gray-50);
+  --table-row-hover-bg: var(--color-gray-50);
+  --table-selected-row-bg: #e6f7ff;
+  --table-expanded-row-bg: #fbfbfb;
+
+  /* Card */
+  --card-head-color: var(--color-text-primary);
+  --card-head-background: transparent;
+  --card-head-font-size: var(--font-size-lg);
+  --card-inner-head-padding: 12px 24px;
+  --card-padding-base: 24px;
+  --card-padding-base-sm: 12px;
+  --card-actions-background: var(--color-bg-container);
+  --card-actions-li-margin: 12px 0;
+  --card-skeleton-bg: #f2f2f2;
+  --card-background: var(--color-bg-container);
+  --card-head-tabs-margin-bottom: -17px;
+  --card-head-padding: 0 24px;
+  --card-inner-head-padding: 12px 24px;
+  --card-padding-base: 24px;
+  --card-padding-base-sm: 12px;
+  --card-head-height: 48px;
+  --card-head-font-size-sm: var(--font-size-sm);
+  --card-head-padding-sm: 0 12px;
+  --card-padding-base-sm: 12px;
+
+  /* =================
+     Dark Theme Support
+     ================= */
+
+  /* Note: These variables can be overridden in a [data-theme="dark"] selector */
+  /* for automatic dark theme support */
+}
+
+/* =================
+   Dark Theme Override Example
+   ================= */
+[data-theme='dark'] {
+  --color-text-primary: rgba(255, 255, 255, 0.85);
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-text-tertiary: rgba(255, 255, 255, 0.45);
+  --color-text-quaternary: rgba(255, 255, 255, 0.25);
+  --color-text-disabled: rgba(255, 255, 255, 0.25);
+
+  --color-bg-container: #141414;
+  --color-bg-elevated: #1f1f1f;
+  --color-bg-layout: #000000;
+  --color-bg-spotlight: #424242;
+
+  --color-border: #434343;
+  --color-border-secondary: #303030;
+
+  --color-gray-50: #1f1f1f;
+  --color-gray-100: #262626;
+  --color-gray-200: #303030;
+  --color-gray-300: #434343;
+  --color-gray-400: #595959;
+  --color-gray-500: #8c8c8c;
+  --color-gray-600: #bfbfbf;
+  --color-gray-700: #d9d9d9;
+  --color-gray-800: #f0f0f0;
+  --color-gray-900: #f5f5f5;
+
+  /* Component adjustments for dark theme */
+  --table-header-bg: #1f1f1f;
+  --table-row-hover-bg: #262626;
+  --card-background: #141414;
+}
+
+/* =================
+   Compact Theme Override Example
+   ================= */
+[data-size='compact'] {
+  --control-height: 24px;
+  --control-height-sm: 16px;
+  --control-height-lg: 32px;
+  --control-padding-horizontal: 8px;
+  --control-padding-horizontal-sm: 4px;
+  --font-size-base: 12px;
+  --font-size-lg: 14px;
+  --card-padding-base: 16px;
+  --card-padding-base-sm: 8px;
+}

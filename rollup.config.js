@@ -5,6 +5,7 @@ import babel from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import copy from 'rollup-plugin-copy';
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
@@ -56,6 +57,9 @@ export default [
             },
           ],
         ],
+      }),
+      copy({
+        targets: [{ src: 'src/styles/*.css', dest: 'dist/styles' }],
       }),
     ],
     external: ['react', 'react-dom', 'antd'],

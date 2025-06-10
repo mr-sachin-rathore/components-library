@@ -135,6 +135,77 @@ function MyApp() {
 - `redTheme` - Red primary color theme
 - `orangeTheme` - Orange primary color theme
 
+## 🎨 CSS Utilities
+
+This library includes a comprehensive collection of CSS utility classes and custom properties that you can import separately for consistent styling and rapid development.
+
+### Available CSS Files
+
+Import only what you need to keep your bundle size minimal:
+
+```css
+/* Import individual utility files */
+@import 'modern-components/dist/styles/utilities.css';    /* ~10KB - Spacing, display, colors, etc. */
+@import 'modern-components/dist/styles/responsive.css';   /* ~15KB - Responsive utilities & grid */
+@import 'modern-components/dist/styles/variables.css';    /* ~10KB - CSS custom properties */
+
+/* Or import everything at once */
+@import 'modern-components/dist/styles/index.css';        /* ~35KB - Complete bundle */
+```
+
+### Utility Classes Examples
+
+```jsx
+// Spacing and layout utilities
+<div className="d-flex justify-between align-center p-3 m-2">
+  <span>Left content</span>
+  <span>Right content</span>
+</div>
+
+// Responsive grid system
+<div className="row">
+  <div className="col-12 col-md-6 col-lg-4">Column 1</div>
+  <div className="col-12 col-md-6 col-lg-4">Column 2</div>
+  <div className="col-12 col-md-12 col-lg-4">Column 3</div>
+</div>
+
+// Color and styling utilities
+<div className="bg-primary text-white p-3 border-radius shadow">
+  Styled with utility classes
+</div>
+```
+
+### CSS Custom Properties
+
+Use CSS variables for consistent theming:
+
+```css
+.custom-component {
+  background: var(--color-primary);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* Dark theme support */
+[data-theme="dark"] {
+  --color-primary: #1890ff;
+  --color-bg-container: #141414;
+}
+```
+
+### Utility Categories
+
+- **Spacing**: `m-0` to `m-5`, `p-0` to `p-5` (with directional variants)
+- **Display**: `d-none`, `d-flex`, `d-block`, `d-inline-flex`
+- **Flexbox**: `justify-center`, `align-center`, `flex-column`, `flex-wrap`
+- **Text**: `text-center`, `text-primary`, `font-weight-bold`
+- **Colors**: `bg-primary`, `text-success`, `border-primary`
+- **Responsive**: `d-md-none`, `col-lg-6`, `text-sm-center`
+- **Shadows**: `shadow-sm`, `shadow`, `shadow-lg`
+- **Borders**: `border-radius`, `border`, `border-0`
+
 ## 🔧 Advanced Usage
 
 ### Using All Component Features

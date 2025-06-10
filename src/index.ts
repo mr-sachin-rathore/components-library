@@ -48,3 +48,14 @@ export type { CustomButtonProps } from './components/CustomButton';
 
 // Export custom theme utilities
 export * from './theme';
+
+// CSS Utilities Export
+// Note: These CSS files will be available in the dist/styles/ folder after build
+// Users can import them like:
+// import 'modern-components/dist/styles/utilities.css';
+// import 'modern-components/dist/styles/responsive.css';
+// import 'modern-components/dist/styles/variables.css';
+// import 'modern-components/dist/styles/index.css'; // All styles bundle
+
+// The actual CSS files are located in src/styles/ and will be copied to dist/styles/
+// during the build process. No direct exports needed here for CSS.

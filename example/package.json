@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
-    "modern-components": "file:../",
+    "modern-components": "../modern-components-1.0.0.tgz",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "dayjs": "^1.11.10"

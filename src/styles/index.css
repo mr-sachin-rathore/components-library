@@ -1,0 +1,21 @@
+/* ==========================================================================
+   Modern Components CSS Utilities
+   Complete CSS utility collection for modern React applications
+   ========================================================================== */
+
+/* Import all utility stylesheets */
+@import './variables.css';
+@import './utilities.css';
+@import './responsive.css';
+
+/* ==========================================================================
+   Usage Instructions:
+   
+   You can import this complete bundle:
+   import 'modern-components/dist/styles/index.css';
+   
+   Or import individual files:
+   import 'modern-components/dist/styles/utilities.css';    // Utility classes
+   import 'modern-components/dist/styles/responsive.css';   // Responsive utilities
+   import 'modern-components/dist/styles/variables.css';    // CSS custom properties
+   ========================================================================== */

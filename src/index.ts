@@ -1,4 +1,4 @@
-// Re-export everything from Ant Design
+// Re-export everything from Ant Design (except ConfigProvider which we override)
 export * from 'antd';
 
 // Re-export default components that need special handling
@@ -19,7 +19,6 @@ export { default as Timeline } from 'antd/es/timeline/index.js';
 export { default as Descriptions } from 'antd/es/descriptions/index.js';
 export { default as Checkbox } from 'antd/es/checkbox/index.js';
 export { default as Radio } from 'antd/es/radio/index.js';
-export { default as ConfigProvider } from 'antd/es/config-provider/index.js';
 
 // Re-export grid components explicitly
 export { Row, Col } from 'antd/es/grid/index.js';
@@ -50,8 +49,21 @@ export type { CustomButtonProps } from './components/CustomButton';
 export { Navbar } from './components/Navbar';
 export type { NavbarProps, NavbarItem } from './components/Navbar';
 
-// Export custom theme utilities
-export * from './theme';
+// Export our enhanced ConfigProvider (overrides Ant Design's ConfigProvider)
+export {
+  ConfigProvider,
+  useTheme,
+  theme,
+  defaultTheme,
+  darkTheme,
+  colorPalette,
+  spacing,
+  backgrounds,
+  createCustomTheme,
+} from './components/ConfigProvider';
+
+// Export centralized theme configuration
+export * from './theme-config';
 
 // CSS Utilities Export
 // Note: These CSS files will be available in the dist/styles/ folder after build

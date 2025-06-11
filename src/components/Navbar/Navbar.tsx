@@ -102,12 +102,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   }, [collapsed, isHovering, isLocked]);
 
-  const handleItemClick = useCallback((item: NavbarItem) => {
-    if (item.action && !item.disabled) {
-      item.action();
-    }
-  }, []);
-
   const handleToggleCollapse = useCallback(() => {
     setCollapsed(!collapsed);
     if (!collapsed) {
@@ -126,7 +120,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   const topMenuItems = useMemo((): MenuProps['items'] => {
     return topItems.map(item => {
       const showTooltip = collapsed && !isExpanded;
-      const isSelected = selectedKeys ? selectedKeys.includes(item.key) : item.selected;
 
       return {
         key: item.key,
@@ -149,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         },
       };
     });
-  }, [topItems, collapsed, isExpanded, selectedKeys, onSelect]);
+  }, [topItems, collapsed, isExpanded, onSelect]);
 
   const bottomMenuItems = useMemo((): MenuProps['items'] => {
     const items = [...bottomItems];
@@ -171,7 +164,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
     return items.map(item => {
       const showTooltip = collapsed && !isExpanded;
-      const isSelected = selectedKeys ? selectedKeys.includes(item.key) : item.selected;
 
       return {
         key: item.key,
@@ -206,16 +198,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         className: item.key === 'navbar-lock' ? 'navbar-lock-item' : undefined,
       };
     });
-  }, [
-    bottomItems,
-    showLockItem,
-    isLocked,
-    handleToggleLock,
-    collapsed,
-    isExpanded,
-    selectedKeys,
-    onSelect,
-  ]);
+  }, [bottomItems, showLockItem, isLocked, handleToggleLock, collapsed, isExpanded, onSelect]);
 
   const logoDisplay = isExpanded ? logo : logoCollapsed || logo;
 

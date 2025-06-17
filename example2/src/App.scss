@@ -1,0 +1,1541 @@
+// ===========================
+// IMPORT MIXINS
+// ===========================
+@import './styles/mixins';
+
+// ===========================
+// BASE STYLES
+// ===========================
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ===========================
+// RESPONSIVE COMPONENT STYLES USING MIXINS
+// ===========================
+
+// Desktop Sidebar - Hidden on tablet/mobile
+.desktop-sider {
+    display: block !important;
+
+    @include respond-to(ipad) {
+        display: none !important;
+    }
+}
+
+// Mobile menu button - Only visible on small screens
+.mobile-menu-button {
+    display: none !important;
+
+    @include respond-to(ipad) {
+        display: inline-flex !important;
+    }
+}
+
+// Header actions responsive behavior
+.header-actions {
+    flex-shrink: 0;
+
+    @include mobile-only {
+        .ant-space {
+            gap: 8px !important;
+        }
+
+        .ant-avatar {
+            width: 28px !important;
+            height: 28px !important;
+            line-height: 28px !important;
+            font-size: 14px !important;
+        }
+
+        .ant-badge {
+            transform: scale(0.9);
+        }
+    }
+
+    @include tablet-only {
+        .ant-space {
+            gap: 10px !important;
+        }
+
+        .ant-avatar {
+            width: 30px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            font-size: 15px !important;
+        }
+
+        .ant-badge {
+            transform: scale(0.95);
+        }
+    }
+
+    @include ipad-only {
+        .ant-space {
+            gap: 12px !important;
+        }
+
+        .ant-avatar {
+            width: 32px !important;
+            height: 32px !important;
+            line-height: 32px !important;
+            font-size: 16px !important;
+        }
+    }
+}
+
+// Apply button mixin to all buttons
+.ant-btn {
+    @include button-responsive();
+    @include hover-effect();
+}
+
+// Apply input mixin to all inputs
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+    @include input-responsive();
+}
+
+// Layout content spacing using mixin
+.ant-layout-content {
+    @include layout-spacing();
+}
+
+// Form items spacing
+.ant-form-item {
+    @include mobile-only {
+        margin-bottom: 20px !important;
+    }
+
+    @include tablet-only {
+        margin-bottom: 18px !important;
+    }
+
+    @include ipad-only {
+        margin-bottom: 16px !important;
+    }
+}
+
+// Card heights adjustments
+.ant-card {
+    @include card-responsive();
+    @include hover-effect(translateY(-2px), 0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+// Table mobile optimizations using mixins
+.ant-table-wrapper {
+    @include mobile-only {
+        font-size: 13px !important;
+        overflow-x: auto;
+    }
+
+    @include tablet-only {
+        font-size: 13px !important;
+        overflow-x: auto;
+    }
+
+    @include ipad-only {
+        font-size: 14px !important;
+    }
+
+    .ant-table-thead>tr>th,
+    .ant-table-tbody>tr>td {
+        @include mobile-only {
+            padding: 12px 8px !important;
+            font-size: 13px !important;
+            white-space: nowrap;
+        }
+
+        @include tablet-only {
+            padding: 12px 10px !important;
+            font-size: 13px !important;
+            white-space: nowrap;
+        }
+
+        @include ipad-only {
+            padding: 14px 12px !important;
+            font-size: 14px !important;
+        }
+    }
+}
+
+// Pagination using mixins
+.ant-pagination {
+    @include mobile-only {
+        text-align: center;
+        margin-top: 16px;
+
+        .ant-pagination-options {
+            display: none;
+        }
+    }
+
+    @include tablet-only {
+        text-align: center;
+        margin-top: 16px;
+
+        .ant-pagination-options {
+            display: none;
+        }
+    }
+
+    @include ipad-only {
+        text-align: center;
+        margin-top: 18px;
+    }
+
+    .ant-pagination-item,
+    .ant-pagination-prev,
+    .ant-pagination-next {
+        @include mobile-only {
+            @include touch-target(40px);
+            line-height: 38px !important;
+            font-size: 14px !important;
+        }
+
+        @include tablet-only {
+            @include touch-target(36px);
+            line-height: 34px !important;
+            font-size: 14px !important;
+        }
+
+        @include ipad-only {
+            height: 34px !important;
+            min-width: 34px !important;
+            line-height: 32px !important;
+            font-size: 14px !important;
+        }
+    }
+}
+
+// Alert responsive styling
+.ant-alert {
+    @include mobile-only {
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    @include typography-responsive(14px, 14px, 14px);
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    &.ant-alert-info {
+        background: linear-gradient(135deg, #e6f7ff 0%, #bae7ff 100%);
+        border-left: 4px solid #1677ff;
+    }
+
+    &.ant-alert-success {
+        background: linear-gradient(135deg, #f6ffed 0%, #d9f7be 100%);
+        border-left: 4px solid #52c41a;
+    }
+
+    &.ant-alert-warning {
+        background: linear-gradient(135deg, #fffbe6 0%, #fff1b8 100%);
+        border-left: 4px solid #faad14;
+    }
+
+    &.ant-alert-error {
+        background: linear-gradient(135deg, #fff2f0 0%, #ffccc7 100%);
+        border-left: 4px solid #ff4d4f;
+    }
+}
+
+// Tag responsive styling
+.ant-tag {
+    @include mobile-only {
+        padding: 4px 12px !important;
+        font-size: 13px !important;
+        border-radius: 12px !important;
+    }
+}
+
+// Progress mobile
+.ant-progress-text {
+    @include typography-responsive(13px, 13px, 14px);
+}
+
+// Modal responsive adjustments using mixins
+.ant-modal-content {
+    @include mobile-only {
+        margin: 16px !important;
+    }
+
+    overflow: hidden;
+}
+
+.ant-modal-header {
+    @include mobile-only {
+        padding: 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+    }
+}
+
+.ant-modal-body {
+    @include mobile-only {
+        padding: 20px !important;
+    }
+}
+
+.ant-modal-footer {
+    @include mobile-only {
+        padding: 16px 20px !important;
+        text-align: center !important;
+
+        .ant-btn {
+            margin: 0 4px !important;
+        }
+    }
+}
+
+.ant-modal-mask {
+    backdrop-filter: blur(4px);
+}
+
+// Tabs responsive using mixins
+.ant-tabs-tab {
+    @include mobile-only {
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        @include touch-target(44px);
+        line-height: 44px !important;
+    }
+}
+
+// Menu responsive using mixins
+.ant-menu-item {
+    @include mobile-only {
+        @include touch-target(48px);
+        line-height: 48px !important;
+        font-size: 15px !important;
+        padding: 0 20px !important;
+    }
+}
+
+// Steps responsive
+.ant-steps {
+    margin: 16px 0;
+}
+
+.ant-steps-item-title {
+    @include typography-responsive(14px, 14px, 16px);
+}
+
+.ant-steps-item-description {
+    @include typography-responsive(12px, 13px, 14px);
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+    background-color: #52c41a;
+    border-color: #52c41a;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+    background-color: #1677ff;
+    border-color: #1677ff;
+}
+
+// Collapse responsive
+.ant-collapse {
+    border: 1px solid #d9d9d9;
+    background: #fafafa;
+}
+
+.ant-collapse-item {
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.ant-collapse-header {
+    @include mobile-only {
+        padding: 16px !important;
+        font-size: 14px !important;
+    }
+
+    @include hover-effect(none, none);
+    @include smooth-transition();
+
+    &:hover {
+        background: rgba(22, 119, 255, 0.05);
+    }
+}
+
+.ant-collapse-content>.ant-collapse-content-box {
+    @include mobile-only {
+        padding: 16px !important;
+    }
+}
+
+// Space component mobile adjustments using mixins
+.ant-space-vertical {
+    @include mobile-only {
+        width: 100% !important;
+
+        .ant-space-item {
+            width: 100% !important;
+        }
+    }
+}
+
+// Button block behavior on mobile
+.ant-btn-block {
+    @include mobile-only {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
+// Enhanced interactions using mixins
+.ant-card-hoverable {
+    @include hover-effect();
+}
+
+.ant-btn-primary:hover:not(.ant-btn-disabled) {
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+}
+
+// Header improvements
+.ant-layout-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+
+    .ant-row {
+        @include mobile-only {
+            flex-wrap: nowrap !important;
+        }
+    }
+}
+
+// Footer improvements
+.ant-layout-footer {
+    border-top: 1px solid #f0f0f0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+// Avatar hover effects using mixins
+.ant-avatar {
+    @include smooth-transition();
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Badge improvements
+.ant-badge {
+    @include smooth-transition();
+}
+
+// Progress bar animations
+.ant-progress-line {
+    margin-bottom: 8px;
+}
+
+.ant-progress-bg {
+    @include smooth-transition(all, 0.4s);
+}
+
+.ant-progress-circle {
+    @include mobile-only {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+// Drawer improvements
+.ant-drawer-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.ant-drawer-body {
+    background: #fff;
+    margin: 16px;
+    border-radius: 8px;
+}
+
+.ant-drawer-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ant-drawer-title {
+    color: #fff;
+}
+
+.ant-drawer-close {
+    color: #fff;
+}
+
+// Custom utility classes using mixins
+.responsive-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.mobile-hidden {
+    display: block;
+
+    @include respond-to(tablet) {
+        display: none;
+    }
+}
+
+.mobile-visible {
+    display: none;
+
+    @include respond-to(tablet) {
+        display: block;
+    }
+}
+
+// Enhanced scrollbar
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 3px;
+
+    &:hover {
+        background: linear-gradient(45deg, #5a6fd8, #6a4190);
+    }
+}
+
+// Form enhancements for mobile using mixins
+.ant-form-vertical .ant-form-item-label {
+    @include mobile-only {
+        text-align: left;
+        padding-bottom: 4px;
+    }
+}
+
+.ant-form-item-control-input {
+    @include mobile-only {
+        @include touch-target();
+    }
+}
+
+.ant-radio-group {
+    @include mobile-only {
+        @include flex-responsive(column, row);
+        gap: 12px;
+    }
+}
+
+.ant-checkbox-wrapper {
+    @include mobile-only {
+        margin-bottom: 8px;
+    }
+}
+
+// Force form buttons to stack vertically using mixins
+.ant-form-item:last-child .ant-space-horizontal {
+    @include mobile-only {
+        flex-direction: column !important;
+        width: 100% !important;
+
+        .ant-space-item {
+            width: 100% !important;
+        }
+    }
+}
+
+// Touch improvements for mobile using mixins
+.ant-btn,
+.ant-input,
+.ant-select-selector,
+.ant-picker,
+.ant-switch,
+.ant-checkbox-wrapper,
+.ant-radio-wrapper {
+    @include mobile-only {
+        @include touch-target();
+    }
+}
+
+// Menu items touch-friendly
+.ant-menu-item,
+.ant-menu-submenu-title {
+    @include mobile-only {
+        @include touch-target(48px);
+        line-height: 48px !important;
+    }
+}
+
+// Card actions touch-friendly
+.ant-card-actions>li {
+    @include mobile-only {
+        @include touch-target(48px);
+        line-height: 48px !important;
+    }
+}
+
+// Tooltip and Popover mobile adjustments
+.ant-tooltip {
+    @include mobile-only {
+        max-width: calc(100vw - 32px) !important;
+    }
+}
+
+.ant-popover {
+    @include mobile-only {
+        max-width: calc(100vw - 32px) !important;
+    }
+}
+
+// Enhanced table responsiveness using mixins
+.ant-table-wrapper .ant-table-content {
+    @include mobile-only {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+}
+
+.ant-table-wrapper .ant-table-body {
+    @include mobile-only {
+        min-width: 400px;
+    }
+}
+
+.ant-pagination-simple .ant-pagination-simple-pager {
+    @include mobile-only {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+// Custom theme indicator
+.theme-indicator {
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    background: rgba(22, 119, 255, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    z-index: 1001;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    @include mobile-only {
+        top: 70px;
+        right: 12px;
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+}
+
+// ===========================
+// CALENDAR AND DATE-TIME COMPONENTS RESPONSIVE STYLES USING MIXINS
+// ===========================
+
+// Calendar responsive adjustments using mixins
+.ant-picker-calendar {
+    background: #fff;
+
+    @include mobile-only {
+        padding: 8px !important;
+        font-size: 14px !important;
+
+        // Ensure calendar fits in mobile viewport
+        max-width: 100vw !important;
+        overflow-x: auto !important;
+    }
+}
+
+.ant-picker-calendar-header {
+    padding: 8px 12px;
+
+    @include tablet-only {
+        padding: 12px !important;
+    }
+
+    @include mobile-only {
+        padding: 8px !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+}
+
+// Critical: Dropdown panel positioning and sizing fixes
+.ant-picker-dropdown {
+    @include mobile-only {
+        font-size: 14px !important;
+
+        // Critical positioning fixes for mobile
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        max-width: calc(100vw - 32px) !important;
+        max-height: calc(100vh - 64px) !important;
+        width: 320px !important;
+        z-index: 9999 !important;
+
+        // Add backdrop blur
+        &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: -1;
+        }
+    }
+
+    @include tablet-only {
+        font-size: 14px !important;
+
+        // Critical positioning fixes for tablet
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        max-width: calc(100vw - 48px) !important;
+        max-height: calc(100vh - 80px) !important;
+        width: 360px !important;
+        z-index: 9999 !important;
+
+        // Add backdrop blur
+        &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
+            z-index: -1;
+        }
+    }
+
+    @include ipad-only {
+        font-size: 15px !important;
+
+        // Normal positioning for iPad
+        max-width: 400px !important;
+        max-height: 500px !important;
+        width: 380px !important;
+    }
+
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+// Time picker panel specific fixes
+.ant-picker-time-panel {
+    @include mobile-only {
+        max-height: calc(100vh - 120px) !important;
+        overflow-y: auto !important;
+    }
+
+    @include tablet-only {
+        max-height: calc(100vh - 140px) !important;
+        overflow-y: auto !important;
+    }
+
+    @include ipad-only {
+        max-height: 400px !important;
+        overflow-y: auto !important;
+    }
+
+    border-radius: 8px !important;
+}
+
+// Date picker panel body fixes
+.ant-picker-panel {
+    @include mobile-only {
+        padding: 12px !important;
+        max-height: calc(100vh - 120px) !important;
+        overflow-y: auto !important;
+    }
+
+    @include tablet-only {
+        padding: 14px !important;
+        max-height: calc(100vh - 140px) !important;
+        overflow-y: auto !important;
+    }
+
+    @include ipad-only {
+        padding: 16px !important;
+        max-height: 400px !important;
+        overflow-y: auto !important;
+    }
+}
+
+// Range picker dropdown specific fixes
+.ant-picker-dropdown-range {
+    @include mobile-only {
+        width: calc(100vw - 32px) !important;
+        max-width: 350px !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    @include tablet-only {
+        width: calc(100vw - 48px) !important;
+        max-width: 400px !important;
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    @include ipad-only {
+        width: 450px !important;
+        max-width: 450px !important;
+    }
+}
+
+// DatePicker and TimePicker mobile optimizations using mixins
+.ant-picker,
+.ant-picker-range {
+    @include input-responsive(44px, 38px, 32px);
+
+    &.ant-picker-focused {
+        border-color: #1677ff !important;
+        box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2) !important;
+    }
+
+    @include mobile-only {
+        // Ensure picker input is touch-friendly
+        position: relative !important;
+
+        // Add click indicator
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            border: 2px solid transparent;
+            border-radius: inherit;
+            transition: border-color 0.2s ease;
+        }
+
+        &:focus-within::after {
+            border-color: #1677ff;
+        }
+    }
+}
+
+.ant-picker-input>input {
+    @include mobile-only {
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+        text-align: center !important;
+        cursor: pointer !important;
+    }
+}
+
+.ant-time-picker {
+    @include input-responsive(44px, 38px, 32px);
+}
+
+.ant-time-picker-input {
+    @include mobile-only {
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+        text-align: center !important;
+        cursor: pointer !important;
+    }
+}
+
+// Calendar cells responsive using mixins
+.ant-picker-cell {
+    @include mobile-only {
+        height: 32px !important;
+        min-height: 32px !important;
+        padding: 2px !important;
+    }
+
+    @include tablet-only {
+        height: 36px !important;
+    }
+}
+
+.ant-picker-cell-inner {
+    @include mobile-only {
+        height: 28px !important;
+        line-height: 28px !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        border-radius: 4px !important;
+    }
+
+    @include tablet-only {
+        height: 34px !important;
+        line-height: 34px !important;
+        font-size: 14px !important;
+    }
+}
+
+.ant-picker-calendar-date-content {
+    @include mobile-only {
+        height: 28px !important;
+        font-size: 12px !important;
+        line-height: 28px !important;
+    }
+}
+
+.ant-picker-calendar-date-value {
+    @include mobile-only {
+        font-size: 13px !important;
+        font-weight: 500 !important;
+    }
+}
+
+// Calendar month/year view mobile using mixins
+.ant-picker-calendar-mode-switch {
+    @include mobile-only {
+        order: -1;
+        width: 100% !important;
+        margin-bottom: 8px !important;
+    }
+}
+
+.ant-picker-calendar-year-select,
+.ant-picker-calendar-month-select {
+    @include mobile-only {
+        min-width: 60px !important;
+        font-size: 14px !important;
+    }
+}
+
+// Critical: Time panel column fixes for mobile
+.ant-picker-time-panel-column {
+    @include mobile-only {
+        font-size: 14px !important;
+        min-width: 60px !important;
+
+        // Fix scrolling on mobile
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #d9d9d9;
+            border-radius: 2px;
+        }
+    }
+}
+
+.ant-picker-time-panel-cell {
+    @include mobile-only {
+        height: 36px !important;
+        line-height: 36px !important;
+        font-size: 14px !important;
+        padding: 0 12px !important;
+    }
+
+    @include hover-effect(none, rgba(22, 119, 255, 0.1));
+
+    &.ant-picker-time-panel-cell-selected {
+        background: #1677ff !important;
+        color: #fff !important;
+        font-weight: 600;
+    }
+}
+
+// Range picker mobile adjustments using mixins
+.ant-picker-range-separator {
+    @include mobile-only {
+        padding: 0 4px !important;
+        font-size: 12px !important;
+    }
+}
+
+.ant-picker-range .ant-picker-input {
+    @include mobile-only {
+        text-align: center !important;
+        flex: 1 !important;
+    }
+}
+
+// Enhanced calendar animations using mixins
+.ant-picker-calendar-date {
+    @include smooth-transition();
+
+    &:hover {
+        background: rgba(22, 119, 255, 0.1) !important;
+        transform: scale(1.05);
+    }
+}
+
+.ant-picker-calendar-date-today {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background: #52c41a;
+        border-radius: 50%;
+    }
+}
+
+// Custom calendar cell styling using mixins
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    background: linear-gradient(135deg, #1677ff 0%, #69c0ff 100%) !important;
+    color: #fff !important;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(22, 119, 255, 0.3) !important;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner {
+    border: 2px solid #52c41a !important;
+    font-weight: 600;
+}
+
+// Date picker dropdown enhancements using mixins
+.ant-picker-header {
+    border-bottom: 1px solid #f0f0f0 !important;
+    padding: 12px 16px !important;
+
+    @include mobile-only {
+        padding: 16px !important;
+        background: #fafafa !important;
+    }
+}
+
+.ant-picker-body {
+    padding: 8px !important;
+
+    @include mobile-only {
+        padding: 12px !important;
+    }
+}
+
+.ant-picker-time-panel-column:not(:last-child) {
+    border-right: 1px solid #f0f0f0 !important;
+}
+
+.ant-picker-range-wrapper {
+    padding: 4px !important;
+
+    @include mobile-only {
+        padding: 8px !important;
+    }
+}
+
+// Loading and disabled states using mixins
+.ant-picker-disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+}
+
+.ant-picker-suffix {
+    color: #bfbfbf !important;
+    @include smooth-transition(color);
+
+    @include mobile-only {
+        font-size: 16px !important;
+    }
+}
+
+.ant-picker:hover .ant-picker-suffix {
+    color: #1677ff !important;
+}
+
+// Accessibility improvements using mixins
+.ant-picker:focus-within {
+    outline: 2px solid #1677ff !important;
+    outline-offset: 2px !important;
+}
+
+.ant-picker-calendar-date:focus {
+    outline: 2px solid #1677ff !important;
+    outline-offset: 1px !important;
+    border-radius: 4px !important;
+}
+
+// Custom responsive calendar grid using mixins
+.ant-picker-content {
+    @include mobile-only {
+        padding: 4px !important;
+    }
+}
+
+.ant-picker-calendar-mini {
+    @include mobile-only {
+        font-size: 12px !important;
+
+        .ant-picker-cell {
+            height: 28px !important;
+        }
+
+        .ant-picker-cell-inner {
+            height: 26px !important;
+            line-height: 26px !important;
+            font-size: 11px !important;
+        }
+    }
+}
+
+// Critical: Prevent body scroll when picker is open
+body.ant-picker-dropdown-open {
+    @include mobile-only {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+// Footer buttons for picker panels
+.ant-picker-footer {
+    @include mobile-only {
+        padding: 16px !important;
+        border-top: 1px solid #f0f0f0 !important;
+        background: #fafafa !important;
+
+        .ant-btn {
+            margin: 0 4px !important;
+            min-width: 60px !important;
+        }
+    }
+}
+
+// Range picker input groups
+.ant-picker-range-input {
+    @include mobile-only {
+        flex: 1 !important;
+
+        input {
+            text-align: center !important;
+            font-size: 14px !important;
+        }
+    }
+}
+
+// Today button and preset buttons
+.ant-picker-today-btn {
+    @include mobile-only {
+        padding: 8px 16px !important;
+        font-size: 14px !important;
+        min-height: 36px !important;
+    }
+}
+
+.ant-picker-presets {
+    @include mobile-only {
+        padding: 8px !important;
+        max-height: 200px !important;
+        overflow-y: auto !important;
+
+        .ant-picker-preset-element {
+            padding: 8px 12px !important;
+            font-size: 14px !important;
+            min-height: 36px !important;
+        }
+    }
+}
+
+// Month/Year picker specific styles
+.ant-picker-year-panel,
+.ant-picker-month-panel {
+    @include mobile-only {
+        .ant-picker-cell-inner {
+            height: 36px !important;
+            line-height: 36px !important;
+            font-size: 14px !important;
+            padding: 0 8px !important;
+        }
+    }
+}
+
+// Quarter picker support
+.ant-picker-quarter-panel {
+    @include mobile-only {
+        .ant-picker-cell-inner {
+            height: 36px !important;
+            line-height: 36px !important;
+            font-size: 14px !important;
+            padding: 0 8px !important;
+        }
+    }
+}
+
+// Decade picker support
+.ant-picker-decade-panel {
+    @include mobile-only {
+        .ant-picker-cell-inner {
+            height: 36px !important;
+            line-height: 36px !important;
+            font-size: 14px !important;
+            padding: 0 8px !important;
+        }
+    }
+}
+
+// Fix for picker popup arrow
+.ant-picker-dropdown .ant-picker-range-arrow {
+    @include mobile-only {
+        display: none !important; // Hide arrow on mobile as we're centering the popup
+    }
+}
+
+// Ensure proper stacking context
+.ant-picker-dropdown-placement-bottomLeft,
+.ant-picker-dropdown-placement-bottomRight,
+.ant-picker-dropdown-placement-topLeft,
+.ant-picker-dropdown-placement-topRight {
+    @include mobile-only {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
+// Mobile-specific picker dropdown class
+.mobile-picker-dropdown {
+    @include mobile-only {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        max-width: calc(100vw - 32px) !important;
+        max-height: calc(100vh - 64px) !important;
+        width: 320px !important;
+        z-index: 9999 !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2) !important;
+
+        // Enhanced backdrop
+        &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: -1;
+        }
+
+        // Close button area (tap to close)
+        &::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -2;
+            cursor: pointer;
+        }
+    }
+}
+
+// Enhanced mobile touch interactions
+.ant-picker-cell:active,
+.ant-picker-time-panel-cell:active {
+    @include mobile-only {
+        background: rgba(22, 119, 255, 0.2) !important;
+        transform: scale(0.95);
+        transition: all 0.1s ease !important;
+    }
+}
+
+// Improved mobile header controls
+.ant-picker-header-view {
+    @include mobile-only {
+        padding: 8px 4px !important;
+
+        button {
+            min-height: 36px !important;
+            min-width: 36px !important;
+        }
+    }
+}
+
+// Range picker specific mobile enhancements
+.ant-picker-range-separator .ant-picker-separator {
+    @include mobile-only {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 16px !important;
+        color: #999 !important;
+    }
+}
+
+// Time picker scrollable columns mobile improvements
+.ant-picker-time-panel-column {
+    @include mobile-only {
+        // Add momentum scrolling for iOS
+        -webkit-overflow-scrolling: touch;
+
+        // Better scroll indicators
+        &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #bfbfbf;
+        }
+    }
+}
+
+// Better mobile keyboard handling
+.ant-picker input {
+    @include mobile-only {
+        // Prevent keyboard zoom on iOS
+        font-size: 16px !important;
+
+        // Better touch target
+        padding: 12px 16px !important;
+
+        // Prevent autocomplete/suggestions
+        autocomplete: off;
+        autocorrect: off;
+        autocapitalize: off;
+        spellcheck: false;
+    }
+}
+
+// ===========================
+// ANIMATIONS AND EFFECTS
+// ===========================
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+// Loading state improvements using mixins
+.ant-spin-container {
+    @include smooth-transition(opacity);
+}
+
+.ant-spin-blur {
+    opacity: 0.5;
+    user-select: none;
+    pointer-events: none;
+}
+
+// Focus improvements for accessibility
+.ant-btn:focus-visible,
+.ant-input:focus-visible,
+.ant-select-selector:focus-visible {
+    outline: 2px solid #1677ff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.2);
+}
+
+// ===========================
+// MEDIA QUERY BASED STYLES
+// ===========================
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .ant-card {
+        border: 2px solid #000;
+    }
+
+    .ant-btn {
+        border: 2px solid #000;
+    }
+
+    .ant-input {
+        border: 2px solid #000;
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .ant-card-hoverable:hover {
+        transform: none !important;
+    }
+
+    .ant-btn:hover {
+        transform: none !important;
+    }
+
+    .ant-avatar:hover {
+        transform: none !important;
+    }
+}
+
+// Dark mode support preparation
+@media (prefers-color-scheme: dark) {
+    .ant-layout {
+        background: #141414;
+    }
+
+    .ant-layout-content {
+        background: #141414;
+    }
+
+    .ant-picker,
+    .ant-picker-range {
+        background: #141414 !important;
+        border-color: #424242 !important;
+        color: #fff !important;
+    }
+
+    .ant-picker-calendar {
+        background: #141414 !important;
+    }
+
+    .ant-picker-cell-inner {
+        color: #fff !important;
+    }
+}
+
+// Print styles
+@media print {
+
+    .ant-layout-header,
+    .ant-layout-sider,
+    .ant-layout-footer,
+    .mobile-menu-button,
+    .ant-btn,
+    .ant-drawer {
+        display: none !important;
+    }
+
+    .ant-layout-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .ant-card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+
+    .ant-picker-dropdown,
+    .ant-picker-time-panel {
+        display: none !important;
+    }
+
+    .ant-picker-calendar {
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+    }
+}
+
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #64748b;
+    --border-radius: 8px;
+    --spacing-lg: 24px;
+    --text-color: white;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 8px;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.child {
+    flex: 1 1 0;
+    /* allow equal distribution */
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 8px;
+    color: var(--text-color);
+}
+
+.child:has(:not(:overflowing)) {
+    flex-shrink: 0;
+    /* Only shrink large content */
+}

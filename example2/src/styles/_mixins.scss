@@ -1,0 +1,357 @@
+// ===========================
+// SCSS MIXINS FOR RESPONSIVE DESIGN
+// ===========================
+
+// Breakpoint variables
+$breakpoints: (
+    mobile: 576px,
+    tablet: 768px,
+    ipad: 1024px,
+    laptop: 1200px,
+    desktop: 1400px,
+    wide: 1600px
+);
+
+// Function to get breakpoint value
+@function breakpoint($name) {
+    @return map-get($breakpoints, $name);
+}
+
+// ===========================
+// RESPONSIVE MIXINS
+// ===========================
+
+// Mobile first media queries
+@mixin mobile-up {
+    @media (min-width: #{breakpoint(mobile) + 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet-up {
+    @media (min-width: #{breakpoint(tablet) + 1px}) {
+        @content;
+    }
+}
+
+@mixin ipad-up {
+    @media (min-width: #{breakpoint(ipad) + 1px}) {
+        @content;
+    }
+}
+
+@mixin laptop-up {
+    @media (min-width: #{breakpoint(laptop) + 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop-up {
+    @media (min-width: #{breakpoint(desktop) + 1px}) {
+        @content;
+    }
+}
+
+// Mobile first (max-width) media queries
+@mixin mobile-only {
+    @media (max-width: #{breakpoint(mobile)}) {
+        @content;
+    }
+}
+
+@mixin tablet-only {
+    @media (min-width: #{breakpoint(mobile) + 1px}) and (max-width: #{breakpoint(tablet)}) {
+        @content;
+    }
+}
+
+@mixin ipad-only {
+    @media (min-width: #{breakpoint(tablet) + 1px}) and (max-width: #{breakpoint(ipad)}) {
+        @content;
+    }
+}
+
+@mixin laptop-only {
+    @media (min-width: #{breakpoint(ipad) + 1px}) and (max-width: #{breakpoint(laptop)}) {
+        @content;
+    }
+}
+
+@mixin desktop-only {
+    @media (min-width: #{breakpoint(laptop) + 1px}) {
+        @content;
+    }
+}
+
+// Custom breakpoint mixin
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
+            @content;
+        }
+    }
+}
+
+// ===========================
+// COMPONENT MIXINS
+// ===========================
+
+// Button responsive sizing mixin
+@mixin button-responsive($mobile-height: 44px, $tablet-height: 40px, $ipad-height: 36px, $laptop-height: 34px, $desktop-height: 32px) {
+    @include mobile-only {
+        min-height: $mobile-height !important;
+        font-size: 15px !important;
+        padding: 8px 16px !important;
+        border-radius: 6px !important;
+    }
+
+    @include tablet-only {
+        min-height: $tablet-height !important;
+        font-size: 15px !important;
+        padding: 7px 14px !important;
+        border-radius: 5px !important;
+    }
+
+    @include ipad-only {
+        min-height: $ipad-height !important;
+        font-size: 15px !important;
+        padding: 6px 12px !important;
+        border-radius: 5px !important;
+    }
+
+    @include laptop-only {
+        min-height: $laptop-height !important;
+        font-size: 14px !important;
+        padding: 5px 11px !important;
+        border-radius: 4px !important;
+    }
+
+    @include desktop-up {
+        min-height: $desktop-height !important;
+        font-size: 14px !important;
+        padding: 4px 11px !important;
+        border-radius: 4px !important;
+    }
+}
+
+// Input responsive sizing mixin
+@mixin input-responsive($mobile-height: 44px, $tablet-height: 40px, $ipad-height: 36px, $laptop-height: 34px, $desktop-height: 32px) {
+    @include mobile-only {
+        min-height: $mobile-height !important;
+        font-size: 16px !important; // Prevents zoom on iOS
+        padding: 12px 16px !important;
+        border-radius: 6px !important;
+    }
+
+    @include tablet-only {
+        min-height: $tablet-height !important;
+        font-size: 15px !important;
+        padding: 11px 14px !important;
+        border-radius: 6px !important;
+    }
+
+    @include ipad-only {
+        min-height: $ipad-height !important;
+        font-size: 15px !important;
+        padding: 10px 12px !important;
+        border-radius: 5px !important;
+    }
+
+    @include laptop-only {
+        min-height: $laptop-height !important;
+        font-size: 14px !important;
+        padding: 9px 11px !important;
+        border-radius: 4px !important;
+    }
+
+    @include desktop-up {
+        min-height: $desktop-height !important;
+        font-size: 14px !important;
+        padding: 8px 11px !important;
+        border-radius: 4px !important;
+    }
+}
+
+// Card responsive padding mixin
+@mixin card-responsive($mobile-padding: 16px, $tablet-padding: 18px, $ipad-padding: 20px, $laptop-padding: 22px, $desktop-padding: 24px) {
+    @include mobile-only {
+        padding: $mobile-padding !important;
+        margin-bottom: 16px;
+        border-radius: 8px;
+    }
+
+    @include tablet-only {
+        padding: $tablet-padding !important;
+        margin-bottom: 18px;
+        border-radius: 7px;
+    }
+
+    @include ipad-only {
+        padding: $ipad-padding !important;
+        margin-bottom: 20px;
+        border-radius: 6px;
+    }
+
+    @include laptop-only {
+        padding: $laptop-padding !important;
+        margin-bottom: 22px;
+        border-radius: 6px;
+    }
+
+    @include desktop-up {
+        padding: $desktop-padding !important;
+        margin-bottom: 24px;
+        border-radius: 6px;
+    }
+}
+
+// Typography responsive mixin
+@mixin typography-responsive($mobile-size: 14px, $tablet-size: 14px, $ipad-size: 15px, $laptop-size: 15px, $desktop-size: 16px) {
+    @include mobile-only {
+        font-size: $mobile-size;
+        line-height: 1.4;
+    }
+
+    @include tablet-only {
+        font-size: $tablet-size;
+        line-height: 1.45;
+    }
+
+    @include ipad-only {
+        font-size: $ipad-size;
+        line-height: 1.5;
+    }
+
+    @include laptop-only {
+        font-size: $laptop-size;
+        line-height: 1.55;
+    }
+
+    @include desktop-up {
+        font-size: $desktop-size;
+        line-height: 1.6;
+    }
+}
+
+// Layout spacing mixin
+@mixin layout-spacing($mobile: 16px, $tablet: 18px, $ipad: 20px, $laptop: 22px, $desktop: 24px) {
+    @include mobile-only {
+        margin: $mobile !important;
+        padding: 0 !important;
+    }
+
+    @include tablet-only {
+        margin: $tablet !important;
+    }
+
+    @include ipad-only {
+        margin: $ipad !important;
+    }
+
+    @include laptop-only {
+        margin: $laptop;
+    }
+
+    @include desktop-up {
+        margin: $desktop;
+    }
+}
+
+// Touch target mixin for mobile and tablet
+@mixin touch-target($min-size: 44px) {
+    @include mobile-only {
+        min-height: $min-size !important;
+        min-width: $min-size !important;
+    }
+
+    @include tablet-only {
+        min-height: #{$min-size - 4px} !important;
+        min-width: #{$min-size - 4px} !important;
+    }
+}
+
+// Flexbox responsive mixin
+@mixin flex-responsive($mobile-direction: column, $tablet-direction: row, $ipad-direction: row, $desktop-direction: row) {
+    display: flex;
+
+    @include mobile-only {
+        flex-direction: $mobile-direction;
+        gap: 8px;
+    }
+
+    @include tablet-only {
+        flex-direction: $tablet-direction;
+        gap: 12px;
+    }
+
+    @include ipad-only {
+        flex-direction: $ipad-direction;
+        gap: 14px;
+    }
+
+    @include desktop-up {
+        flex-direction: $desktop-direction;
+        gap: 16px;
+    }
+}
+
+// Grid responsive mixin
+@mixin grid-responsive($mobile-cols: 1, $tablet-cols: 2, $ipad-cols: 3, $laptop-cols: 3, $desktop-cols: 4) {
+    display: grid;
+    gap: 16px;
+
+    @include mobile-only {
+        grid-template-columns: repeat($mobile-cols, 1fr);
+    }
+
+    @include tablet-only {
+        grid-template-columns: repeat($tablet-cols, 1fr);
+    }
+
+    @include ipad-only {
+        grid-template-columns: repeat($ipad-cols, 1fr);
+    }
+
+    @include laptop-only {
+        grid-template-columns: repeat($laptop-cols, 1fr);
+    }
+
+    @include desktop-up {
+        grid-template-columns: repeat($desktop-cols, 1fr);
+    }
+}
+
+// Animation and transition mixins
+@mixin smooth-transition($property: all, $duration: 0.3s, $timing: ease) {
+    transition: $property $duration $timing;
+}
+
+@mixin hover-effect($transform: translateY(-2px), $shadow: 0 4px 12px rgba(0, 0, 0, 0.1)) {
+    @include smooth-transition();
+
+    &:hover:not(:disabled) {
+        transform: $transform;
+        box-shadow: $shadow;
+    }
+}
+
+// Utility mixins
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
